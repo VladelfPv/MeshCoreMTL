@@ -13,9 +13,11 @@ void initVariant()
   nrf_gpio_cfg_default(PIN_USER_BTN);
   nrf_gpio_cfg_default(JOYSTICK_LEFT);
   nrf_gpio_cfg_default(JOYSTICK_RIGHT);
+  nrf_gpio_cfg_default(PIN_POWER_BTN);
 
   nrf_gpio_cfg_input(PIN_USER_BTN, NRF_GPIO_PIN_PULLUP);
   nrf_gpio_cfg_input(JOYSTICK_LEFT, NRF_GPIO_PIN_PULLUP);
   nrf_gpio_cfg_input(JOYSTICK_RIGHT, NRF_GPIO_PIN_PULLUP);
+  nrf_gpio_cfg_input(PIN_POWER_BTN, NRF_GPIO_PIN_PULLUP);
 }
 

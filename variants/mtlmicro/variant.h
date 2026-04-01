@@ -93,6 +93,7 @@
 #define PIN_BUTTON5             (34) // Joystick Right  P1.02
 #define PIN_BUTTON6             (-1) // Joystick Press
 #define PIN_BUTTON7             (32) // Joystick Press   P1.00
+#define PIN_BUTTON8             (39) // Joystick Press   P1.07
 
 #define PIN_BACK_BTN            PIN_BUTTON1
 #define JOYSTICK_UP             PIN_BUTTON2
@@ -101,6 +102,7 @@
 #define JOYSTICK_RIGHT          PIN_BUTTON5
 #define JOYSTICK_PRESS          PIN_BUTTON6
 #define PIN_USER_BTN            PIN_BUTTON7
+#define PIN_POWER_BTN           PIN_BUTTON8
 ////////////////////////////////////////////////////////////////////////////////
 // Buzzer
 

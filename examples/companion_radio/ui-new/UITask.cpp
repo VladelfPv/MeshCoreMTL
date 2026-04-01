@@ -31,6 +31,8 @@
 
 #include "icons.h"
 
+extern CustomSX1262Wrapper radio_driver;
+
 class SplashScreen : public UIScreen {
   UITask* _task;
   unsigned long dismiss_after;
@@ -265,7 +267,7 @@ public:
 
       // tx power,  noise floor
       display.setCursor(0, 42);
-      sprintf(tmp, "TX: %ddBm", _node_prefs->tx_power_dbm);
+      sprintf(tmp, "TX: %ddBm", radio_driver.getPower());
       display.print(tmp);
       display.setCursor(0, 53);
       sprintf(tmp, "Noise floor: %d", radio_driver.getNoiseFloor());
@@ -775,6 +777,20 @@ void UITask::loop() {
     expander.digitalWrite(EXP_PIN_BACKLIGHT, !touch_state);
 #endif
     next_backlight_btn_check = millis() + 300;
+  }
+#endif
+#if defined(PIN_POWER_BTN)
+  static unsigned long lastSwitchCheck = 0;
+  static uint8_t lastSwitchPower = 0;
+
+  // Проверяем переключатель раз в 500 мс
+  if (millis() - lastSwitchCheck > 500) {
+    uint8_t newPower = board.getSwitchPower();
+    if (newPower != lastSwitchPower) {
+      radio_driver.setPower(newPower);
+      lastSwitchPower = newPower;
+    }
+    lastSwitchCheck = millis();
   }
 #endif
 
