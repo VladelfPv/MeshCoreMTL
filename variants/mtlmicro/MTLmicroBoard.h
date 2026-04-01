@@ -33,8 +33,8 @@ public:
 
   // Возвращает код мощности в зависимости от положения переключателя
   uint8_t getSwitchPower() const {
-    // Если пин HIGH → 100% (код 22), иначе 50% (код 16)
-    return digitalRead(PIN_POWER_BTN) == HIGH ? 22 : 16;
+    // Если пин HIGH → 100% (код 20), иначе 50% (код 10)
+    return digitalRead(PIN_POWER_BTN) == HIGH ? 20 : 10;
   }
 
   uint16_t getBattMilliVolts() override {
