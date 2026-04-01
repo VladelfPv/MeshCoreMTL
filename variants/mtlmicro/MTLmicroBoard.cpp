@@ -9,10 +9,6 @@ void MTLmicroBoard::begin() {
   
     pinMode(PIN_VBAT_READ, INPUT);
 
-    nrf_gpio_cfg_input(32, NRF_GPIO_PIN_PULLUP);
-    nrf_gpio_cfg_input(33, NRF_GPIO_PIN_PULLUP);
-    nrf_gpio_cfg_input(34, NRF_GPIO_PIN_PULLUP);
-
     #if defined(PIN_BOARD_SDA) && defined(PIN_BOARD_SCL)
       Wire.setPins(PIN_BOARD_SDA, PIN_BOARD_SCL);
     #endif

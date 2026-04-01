@@ -604,13 +604,13 @@ void UITask::notify(UIEventType t) {
 switch(t){
   case UIEventType::contactMessage:
     // gemini's pick
-    buzzer.play("MsgRcv3:d=4,o=6,b=200:32e,32g,32b,16c7");
+    buzzer.play("MsgRcv3:d=4,o=7,b=200:32d#,32d#,32d#,16d");
     break;
   case UIEventType::channelMessage:
-    buzzer.play("kerplop:d=16,o=6,b=120:32g#,32c#");
+    buzzer.play("kerplop:d=16,o=7,b=120:32d#,32d#");
     break;
   case UIEventType::ack:
-    buzzer.play("ack:d=32,o=8,b=120:c");
+    buzzer.play("ack:d=32,o=7,b=120:d#");
     break;
   case UIEventType::roomMessage:
   case UIEventType::newContactMessage:
