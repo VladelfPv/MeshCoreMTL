@@ -31,12 +31,6 @@ public:
 
   #define BATTERY_SAMPLES 8
 
-  // Возвращает код мощности в зависимости от положения переключателя
-  uint8_t getSwitchPower() const {
-    // Если пин HIGH → 100% (код 20), иначе 50% (код 10)
-    return digitalRead(PIN_POWER_BTN) == HIGH ? 20 : 10;
-  }
-
   uint16_t getBattMilliVolts() override {
     analogReadResolution(12);
 

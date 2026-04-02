@@ -779,18 +779,20 @@ void UITask::loop() {
     next_backlight_btn_check = millis() + 300;
   }
 #endif
-#if defined(PIN_POWER_BTN)
-  static unsigned long lastSwitchCheck = 0;
-  static uint8_t lastSwitchPower = 0;
 
-  // Проверяем переключатель раз в 500 мс
-  if (millis() - lastSwitchCheck > 500) {
-    uint8_t newPower = board.getSwitchPower();
-    if (newPower != lastSwitchPower) {
+#if defined(PIN_POWER_BTN)
+  static unsigned long next_power_chck = 0;
+  static uint8_t _lastSwitchPower = 0xFF;
+
+  if (millis() > next_power_chck) {
+    uint8_t newPower = digitalRead(PIN_POWER_BTN) == HIGH ? 20 : 10;   // HIGH=100% (код 20), LOW=50% (код 10)
+    if (newPower != _lastSwitchPower) {
+      _lastSwitchPower = newPower;
       radio_driver.setPower(newPower);
-      lastSwitchPower = newPower;
+      _node_prefs->tx_power_dbm = newPower;
+      _next_refresh = 0;
     }
-    lastSwitchCheck = millis();
+    next_power_chck = millis() + 300;
   }
 #endif
 
