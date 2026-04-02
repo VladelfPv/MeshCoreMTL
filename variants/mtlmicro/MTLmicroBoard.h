@@ -18,7 +18,7 @@
 #define SX126X_DIO3_TCXO_VOLTAGE (1.8f)
 
 #define  PIN_VBAT_READ 31 	// P0.31
-#define  ADC_MULTIPLIER   (1.47f) // dependent on voltage divider resistors. TODO: more accurate battery tracking
+#define  ADC_MULTIPLIER   (1.51f) // dependent on voltage divider resistors. TODO: more accurate battery tracking
 
 class MTLmicroBoard : public NRF52BoardDCDC {
 protected:

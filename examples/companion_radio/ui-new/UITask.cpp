@@ -265,10 +265,15 @@ public:
       sprintf(tmp, "BW: %03.2f     CR: %d", _node_prefs->bw, _node_prefs->cr);
       display.print(tmp);
 
-      // tx power,  noise floor
+      // tx power
       display.setCursor(0, 42);
-      sprintf(tmp, "TX: %ddBm", radio_driver.getPower());
+      sprintf(tmp, "TX: %ddBm", _node_prefs->tx_power_dbm);
       display.print(tmp);
+      // U AKB
+      display.setCursor(84, 42);
+      sprintf(tmp, "%03.2fV", (float)board.getBattMilliVolts() / 1000.0f);
+      display.print(tmp);
+      // noise floor
       display.setCursor(0, 53);
       sprintf(tmp, "Noise floor: %d", radio_driver.getNoiseFloor());
       display.print(tmp);
