@@ -7,7 +7,7 @@
 #endif
 
 #ifndef AUTO_OFF_MILLIS
-  #define AUTO_OFF_MILLIS    60000  // 60 seconds
+  #define AUTO_OFF_MILLIS    15000  // 15 seconds
 #endif
 #define BOOT_SCREEN_MILLIS   3000   // 3 seconds
 
@@ -275,7 +275,7 @@ public:
       display.print(tmp);
       // noise floor
       display.setCursor(0, 53);
-      sprintf(tmp, "Noise floor: %d", radio_driver.getNoiseFloor());
+      sprintf(tmp, "NF: %d", radio_driver.getNoiseFloor());
       display.print(tmp);
     } else if (_page == HomePage::BLUETOOTH) {
       display.setColor(DisplayDriver::GREEN);
@@ -790,12 +790,13 @@ void UITask::loop() {
   static uint8_t _lastSwitchPower = 0xFF;
 
   if (millis() > next_power_chck) {
-    uint8_t newPower = digitalRead(PIN_POWER_BTN) == HIGH ? 20 : 10;   // HIGH=100% (код 20), LOW=50% (код 10)
-    if (newPower != _lastSwitchPower) {
+    uint8_t newPower = digitalRead(PIN_POWER_BTN) == HIGH ? 20 : 10;
+    if (newPower != _lastSwitchPower && !radio_driver.isChannelActive()) {
       _lastSwitchPower = newPower;
       radio_driver.setPower(newPower);
       _node_prefs->tx_power_dbm = newPower;
       _next_refresh = 0;
+      MESH_DEBUG_PRINTLN("INFO: %d dBm", newPower);
     }
     next_power_chck = millis() + 300;
   }

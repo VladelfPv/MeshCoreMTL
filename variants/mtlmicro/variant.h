@@ -8,8 +8,8 @@
 
  #include "WVariant.h"
  
- ////////////////////////////////////////////////////////////////////////////////
- // Low frequency clock source 
+////////////////////////////////////////////////////////////////////////////////
+// Low frequency clock source 
 
 #define VARIANT_MCK       (64000000ul)
 
@@ -103,8 +103,15 @@
 #define JOYSTICK_PRESS          PIN_BUTTON6
 #define PIN_USER_BTN            PIN_BUTTON7
 #define PIN_POWER_BTN           PIN_BUTTON8
+
 ////////////////////////////////////////////////////////////////////////////////
 // Buzzer
 
 #define PIN_VIBRATION           (8)            // P0.8
 #define PIN_BUZZER              (6)            // P0.6
+
+////////////////////////////////////////////////////////////////////////////////
+// LBT
+#define USE_LBT
+#define SAMPLING_THRESHOLD 14
+#define NUM_NOISE_FLOOR_SAMPLES 64
