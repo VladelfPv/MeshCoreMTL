@@ -2,6 +2,23 @@
 #include "target.h"
 #include <helpers/ArduinoHelpers.h>
 
+#include "../examples/companion_radio/MyMesh.h"
+#include "../examples/companion_radio/ui-new/UITask.h"
+
+template<typename Tag, typename Tag::type M>
+struct Rob {
+    friend typename Tag::type get(Tag) { return M; }
+};
+
+struct UITask_next_refresh {
+    typedef unsigned long UITask::*type;
+    friend type get(UITask_next_refresh);
+};
+
+template struct Rob<UITask_next_refresh, &UITask::_next_refresh>;
+
+extern MyMesh the_mesh;
+
 MTLmicroBoard board;
 
 RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_1, P_LORA_RESET, P_LORA_BUSY, SPI);
@@ -25,6 +42,34 @@ AutoDiscoverRTCClock rtc_clock(fallback_clock);
   MomentaryButton joystick_right(JOYSTICK_RIGHT, 1000, true, false, false);
   MomentaryButton back_btn(PIN_BACK_BTN, 1000, true, false, true);
 #endif
+
+void power_update() {
+#if defined(PIN_USER_POWER)
+  static unsigned long next_power_chck = 0;
+  static uint8_t _lastSwitchPower = 0xFF;
+
+  if (millis() > next_power_chck) {
+    auto* node_prefs = the_mesh.getNodePrefs();
+    extern UITask ui_task;
+    unsigned long UITask::*next_refresh_ptr = get(UITask_next_refresh());
+    uint8_t newPower = digitalRead(PIN_USER_POWER) == HIGH ? USER_POWER_MAX : USER_POWER_MIN;
+    if (newPower != _lastSwitchPower && digitalRead(P_LORA_BUSY) == LOW) {
+      _lastSwitchPower = newPower;
+      radio_driver.setPower(newPower);
+      node_prefs->tx_power_dbm = newPower;
+      ui_task.*next_refresh_ptr = 0;
+      MESH_DEBUG_PRINTLN("INFO: %d dBm", newPower);
+    }
+    next_power_chck = millis() + 300;
+  }
+#endif
+}
+
+extern "C" void __real_loop(void); 
+extern "C" void __wrap_loop(void) { 
+    __real_loop();                   
+    power_update();                 
+}
 
 bool radio_init() {
   rtc_clock.begin(Wire);
@@ -51,5 +96,3 @@ mesh::LocalIdentity radio_new_identity() {
   RadioNoiseListener rng(radio);
   return mesh::LocalIdentity(&rng);  // create new random identity
 }
-
-

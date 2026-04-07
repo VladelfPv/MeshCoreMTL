@@ -102,7 +102,10 @@
 #define JOYSTICK_RIGHT          PIN_BUTTON5
 #define JOYSTICK_PRESS          PIN_BUTTON6
 #define PIN_USER_BTN            PIN_BUTTON7
-#define PIN_POWER_BTN           PIN_BUTTON8
+#define PIN_USER_POWER          PIN_BUTTON8
+
+#define USER_POWER_MIN          10
+#define USER_POWER_MAX          20
 
 ////////////////////////////////////////////////////////////////////////////////
 // Buzzer
