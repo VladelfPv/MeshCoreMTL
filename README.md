@@ -1,118 +1,121 @@
-## About MeshCore
+## О MeshCore
 
-MeshCore is a lightweight, portable C++ library that enables multi-hop packet routing for embedded projects using LoRa and other packet radios. It is designed for developers who want to create resilient, decentralized communication networks that work without the internet.
+MeshCore — это лёгкая, портативная библиотека на C++, которая обеспечивает многоканальную маршрутизацию пакетов для встраиваемых проектов с использованием LoRa и других пакетных радиомодулей. Она создана для разработчиков, которые хотят создавать устойчивые децентрализованные сети связи, работающие без доступа к интернету.
 
-## 🔍 What is MeshCore?
+## 🔍 Что такое MeshCore?
 
-MeshCore now supports a range of LoRa devices, allowing for easy flashing without the need to compile firmware manually. Users can flash a pre-built binary using tools like Adafruit ESPTool and interact with the network through a serial console.
-MeshCore provides the ability to create wireless mesh networks, similar to Meshtastic and Reticulum but with a focus on lightweight multi-hop packet routing for embedded projects. Unlike Meshtastic, which is tailored for casual LoRa communication, or Reticulum, which offers advanced networking, MeshCore balances simplicity with scalability, making it ideal for custom embedded solutions., where devices (nodes) can communicate over long distances by relaying messages through intermediate nodes. This is especially useful in off-grid, emergency, or tactical situations where traditional communication infrastructure is unavailable.
+Сейчас MeshCore поддерживает ряд устройств LoRa, что позволяет легко прошивать их без необходимости вручную компилировать прошивку. Пользователи могут загрузить предварительно собранный бинарный файл с помощью таких инструментов, как Adafruit ESPTool, и взаимодействовать с сетью через последовательную консоль.
+MeshCore даёт возможность создавать беспроводные ячеистые сети — аналогично Meshtastic и Reticulum, но с упором на лёгковесную многоканальную маршрутизацию пакетов для встраиваемых проектов. В отличие от Meshtastic, который предназначен для простой LoRa‑связи, или Reticulum с его расширенными сетевыми возможностями, MeshCore сочетает простоту с масштабируемостью, что делает его идеальным решением для кастомных встраиваемых систем, где устройства (узлы) могут обмениваться данными на больших расстояниях, передавая сообщения через промежуточные узлы. Это особенно полезно в условиях отсутствия сети, при чрезвычайных ситуациях или в тактических сценариях, когда традиционная инфраструктура связи недоступна.
 
-## ⚡ Key Features
+## ⚡ Ключевые особенности
 
-* Multi-Hop Packet Routing
-  * Devices can forward messages across multiple nodes, extending range beyond a single radio's reach.
-  * Supports up to a configurable number of hops to balance network efficiency and prevent excessive traffic.
-  * Nodes use fixed roles where "Companion" nodes are not repeating messages at all to prevent adverse routing paths from being used.
-* Supports LoRa Radios – Works with Heltec, RAK Wireless, and other LoRa-based hardware.
-* Decentralized & Resilient – No central server or internet required; the network is self-healing.
-* Low Power Consumption – Ideal for battery-powered or solar-powered devices.
-* Simple to Deploy – Pre-built example applications make it easy to get started.
+* Многоканальная маршрутизация пакетов:
+  * Устройства могут пересылать сообщения через несколько узлов, расширяя зону покрытия за пределы дальности действия одного радиомодуля.
+  * Поддерживается настраиваемое количество переходов (hops) для баланса эффективности сети и предотвращения избыточного трафика.
+  * Узлы имеют фиксированные роли: узлы типа «Companion» вообще не ретранслируют сообщения, чтобы исключить использование некорректных маршрутов.
+* Поддержка LoRa‑радиомодулей — работает с устройствами Heltec, RAK Wireless и другим оборудованием на базе LoRa.
+* Децентрализация и устойчивость — не требуется центральный сервер или интернет; сеть самовосстанавливается.
+* Низкое энергопотребление — идеально подходит для устройств с батарейным или солнечным питанием.
+* Простота развёртывания — готовые примеры приложений облегчают начало работы.
 
-## 🎯 What Can You Use MeshCore For?
+## 🎯 Где можно использовать MeshCore?
 
-* Off-Grid Communication: Stay connected even in remote areas.
-* Emergency Response & Disaster Recovery: Set up instant networks where infrastructure is down.
-* Outdoor Activities: Hiking, camping, and adventure racing communication.
-* Tactical & Security Applications: Military, law enforcement, and private security use cases.
-* IoT & Sensor Networks: Collect data from remote sensors and relay it back to a central location.
+* Связь вне сети (off‑grid): оставайтесь на связи даже в удалённых районах.
+* Реагирование на чрезвычайные ситуации и ликвидация последствий катастроф: создавайте мгновенные сети там, где инфраструктура вышла из строя.
+* Активный отдых: связь во время пеших походов, кемпинга и приключенческих гонок.
+* Тактические и охранные приложения: использование в военных целях, правоохранительных органах и частной охране.
+* Интернет вещей и сенсорные сети: сбор данных с удалённых датчиков и передача их в центральное место.
 
-## 🚀 How to Get Started
+## 🛠 Как начать работу
 
-- Watch the [MeshCore Intro Video](https://www.youtube.com/watch?v=t1qne8uJBAc) by Andy Kirby.
-- Read through our [Frequently Asked Questions](./docs/faq.md) section.
-- Flash the MeshCore firmware on a supported device.
-- Connect with a supported client.
+- Посмотрите [видео‑введение в MeshCore](https://www.youtube.com/watch?v=t1qne8uJBAc) от Энди Кирби.
+- Ознакомьтесь с разделом [Часто задаваемые вопросы](./docs/faq.md).
+- Прошейте прошивку MeshCore на поддерживаемое устройство.
+- Подключитесь к поддерживаемому клиенту.
 
-For developers;
+Для разработчиков:
 
-- Install [PlatformIO](https://docs.platformio.org) in [Visual Studio Code](https://code.visualstudio.com).
-- Clone and open the MeshCore repository in Visual Studio Code.
-- See the example applications you can modify and run:
-  - [Companion Radio](./examples/companion_radio) - For use with an external chat app, over BLE, USB or WiFi.
-  - [KISS Modem](./examples/kiss_modem) - Serial KISS protocol bridge for host applications. ([protocol docs](./docs/kiss_modem_protocol.md))
-  - [Simple Repeater](./examples/simple_repeater) - Extends network coverage by relaying messages.
-  - [Simple Room Server](./examples/simple_room_server) - A simple BBS server for shared Posts.
-  - [Simple Secure Chat](./examples/simple_secure_chat) - Secure terminal based text communication between devices.
-  - [Simple Sensor](./examples/simple_sensor) - Remote sensor node with telemetry and alerting.
+- Установите [PlatformIO](https://docs.platformio.org) в [Visual Studio Code](https://code.visualstudio.com).
+- Скопируйте и откройте репозиторий MeshCore в Visual Studio Code.
+- Ознакомьтесь с примерами приложений, которые можно модифицировать и запускать:
+    - [Companion Radio](./examples/companion_radio) — для использования с внешним чат‑приложением через BLE, USB или WiFi.
+    - [KISS Modem](./examples/kiss_modem) — мост для последовательного протокола KISS для хост‑приложений ([документация по протоколу](./docs/kiss_modem_protocol.md)).
+    - [Simple Repeater](./examples/simple_repeater) — расширяет зону покрытия сети путём ретрансляции сообщений.
+    - [Simple Room Server](./examples/simple_room_server) — простой BBS‑сервер для обмена сообщениями.
+    - [Simple Secure Chat](./examples/simple_secure_chat) — защищённая текстовая связь между устройствами через терминал.
+    - [Simple Sensor](./examples/simple_sensor) — удалённый сенсорный узел с телеметрией и оповещениями.
 
-The Simple Secure Chat example can be interacted with through the Serial Monitor in Visual Studio Code, or with a Serial USB Terminal on Android.
+С примером Simple Secure Chat можно взаимодействовать через Serial Monitor в Visual Studio Code или с помощью Serial USB Terminal на Android.
 
-## ⚡️ MeshCore Flasher
+## ⚡️ Прошивальщик MeshCore
 
-We have prebuilt firmware ready to flash on supported devices.
+У нас есть предварительно собранная прошивка, готовая к прошивке на поддерживаемые устройства:
 
-- Launch https://flasher.meshcore.co.uk
-- Select a supported device
-- Flash one of the firmware types:
-  - Companion, Repeater or Room Server
-- Once flashing is complete, you can connect with one of the MeshCore clients below.
+- Запустите https://flasher.meshcore.co.uk.
+- Выберите поддерживаемое устройство.
+- Прошейте один из типов прошивки:
+    - Companion, Repeater или Room Server.
+- После завершения прошивки вы можете подключиться к одному из клиентов MeshCore, перечисленных ниже.
 
-## 📱 MeshCore Clients
+## 📱 Клиенты MeshCore
 
-**Companion Firmware**
+**Прошивка Companion**
 
-The companion firmware can be connected to via BLE, USB or WiFi depending on the firmware type you flashed.
+К прошивке Companion можно подключиться через BLE, USB или WiFi — в зависимости от типа прошивки, которую вы загрузили:
 
-- Web: https://app.meshcore.nz
+- Веб: https://app.meshcore.nz
 - Android: https://play.google.com/store/apps/details?id=com.liamcottle.meshcore.android
 - iOS: https://apps.apple.com/us/app/meshcore/id6742354151?platform=iphone
 - NodeJS: https://github.com/liamcottle/meshcore.js
 - Python: https://github.com/fdlamotte/meshcore-cli
 
-**Repeater and Room Server Firmware**
+**Прошивка Repeater и Room Server**
 
-The repeater and room server firmwares can be setup via USB in the web config tool.
+Прошивка Repeater и Room Server настраивается через USB в веб‑инструменте конфигурации:
 
 - https://config.meshcore.dev
 
-They can also be managed via LoRa in the mobile app by using the Remote Management feature.
+Их также можно управлять через LoRa в мобильном приложении с помощью функции удалённого управления.
 
-## 🛠 Hardware Compatibility
+## 🛠 Совместимость с оборудованием
 
-MeshCore is designed for devices listed in the [MeshCore Flasher](https://flasher.meshcore.co.uk)
+MeshCore разработан для устройств, перечисленных в [прошивальщике MeshCore](https://flasher.meshcore.co.uk).
 
-## 📜 License
+## 📜 Лицензия
 
-MeshCore is open-source software released under the MIT License. You are free to use, modify, and distribute it for personal and commercial projects.
+MeshCore — это программное обеспечение с открытым исходным кодом, выпущенное под лицензией MIT. Вы можете свободно использовать, модифицировать и распространять его для личных и коммерческих проектов.
 
-## Contributing
+## Участие в разработке
 
-Please submit PR's using 'dev' as the base branch!
-For minor changes just submit your PR and we'll try to review it, but for anything more 'impactful' please open an Issue first and start a discussion. Is better to sound out what it is you want to achieve first, and try to come to a consensus on what the best approach is, especially when it impacts the structure or architecture of this codebase.
+Пожалуйста, отправляйте запросы на включение (PR) с использованием ветки `dev` в качестве базовой!
 
-Here are some general principals you should try to adhere to:
-* Keep it simple. Please, don't think like a high-level lang programmer. Think embedded, and keep code concise, without any unnecessary layers.
-* No dynamic memory allocation, except during setup/begin functions.
-* Use the same brace and indenting style that's in the core source modules. (A .clang-format is prob going to be added soon, but please do NOT retroactively re-format existing code. This just creates unnecessary diffs that make finding problems harder)
+Для незначительных изменений просто отправьте свой PR, и мы постараемся его рассмотреть. Но для более «значимых» изменений сначала откройте задачу (Issue) и начните обсуждение. Лучше сначала прояснить, чего вы хотите достичь, и попытаться прийти к консенсусу относительно наилучшего подхода, особенно если это затрагивает структуру или архитектуру кодовой базы.
 
-Help us prioritize! Please react with thumbs-up to issues/PRs you care about most. We look at reaction counts when planning work.
+Вот несколько общих принципов, которых следует придерживаться:
 
-## Road-Map / To-Do
+* Сохраняйте простоту. Пожалуйста, не думайте как программист высокоуровневого языка. Думайте в терминах встраиваемых систем и пишите лаконичный код без лишних уровней абстракции.
+* Не используйте динамическое выделение памяти, за исключением функций настройки/инициализации.
+* Используйте тот же стиль расстановки скобок и отступов, что и в основных модулях исходного кода (скоро, вероятно, будет добавлен файл `.clang-format`, но, пожалуйста, НЕ переформатируйте существующий код задним числом — это создаёт ненужные различия, затрудняющие поиск проблем).
 
-There are a number of fairly major features in the pipeline, with no particular time-frames attached yet. In very rough chronological order:
-- [X] Companion radio: UI redesign
-- [X] Repeater + Room Server: add ACL's (like Sensor Node has)
-- [X] Standardise Bridge mode for repeaters
-- [ ] Repeater/Bridge: Standardise the Transport Codes for zoning/filtering
-- [X] Core + Repeater: enhanced zero-hop neighbour discovery
-- [ ] Core: round-trip manual path support
-- [ ] Companion + Apps: support for multiple sub-meshes (and 'off-grid' client repeat mode)
-- [ ] Core + Apps: support for LZW message compression
-- [ ] Core: dynamic CR (Coding Rate) for weak vs strong hops
-- [ ] Core: new framework for hosting multiple virtual nodes on one physical device
-- [ ] V2 protocol spec: discussion and consensus around V2 packet protocol, including path hashes, new encryption specs, etc
+Помогите нам расставить приоритеты! Пожалуйста, ставьте реакцию «палец вверх» на задачи/PR, которые для вас наиболее важны. Мы учитываем количество реакций при планировании работы.
 
-## 📞 Get Support
+## Дорожная карта / Задачи
+
+В разработке находится ряд довольно крупных функций, пока без конкретных сроков. В очень приблизительном хронологическом порядке:
+
+- [X] Companion radio: редизайн пользовательского интерфейса.
+- [X] Repeater + Room Server: добавить ACL (как у сенсорного узла).
+- [X] Стандартизировать режим моста для ретрансляторов.
+- [ ] Repeater/Bridge: стандартизировать коды транспорта для зонирования/фильтрации.
+- [X] Core + Repeater: улучшенное обнаружение соседей с нулевым переходом.
+- [ ] Core: поддержка ручного маршрута с возвратом.
+- [ ] Companion + Apps: поддержка нескольких подсетей (и режима повтора клиента вне сети).
+- [ ] Core + Apps: поддержка сжатия сообщений LZW.
+- [ ] Core: динамический CR (коэффициент кодирования) для слабых и сильных переходов.
+- [ ] Core: новая платформа для размещения нескольких виртуальных узлов на одном физическом устройстве.
+- [ ] Спецификация протокола V2: обсуждение и достижение консенсуса по протоколу пакетов V2, включая хэши путей, новые спецификации шифрования и т. д.
+
+## 📞 Поддержка
 
 - Report bugs and request features on the [GitHub Issues](https://github.com/ripplebiz/MeshCore/issues) page.
 - Find additional guides and components on [my site](https://buymeacoffee.com/ripplebiz).
