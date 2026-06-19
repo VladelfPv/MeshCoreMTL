@@ -106,7 +106,7 @@ class CustomSX1262 : public SX1262 {
       readRegister(RADIOLIB_SX126X_REG_RX_GAIN, &rxGain, 1);
       return (rxGain == RADIOLIB_SX126X_RX_GAIN_BOOSTED);
     }
-    
+
   private:
     uint8_t _txPower = 0;
 };

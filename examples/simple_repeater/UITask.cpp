@@ -2,6 +2,10 @@
 #include <Arduino.h>
 #include <helpers/CommonCLI.h>
 
+#ifndef USER_BTN_PRESSED
+#define USER_BTN_PRESSED LOW
+#endif
+
 #define AUTO_OFF_MILLIS      20000  // 20 seconds
 #define BOOT_SCREEN_MILLIS   4000   // 4 seconds
 
@@ -48,17 +52,25 @@ void UITask::renderCurrScreen() {
     int logoWidth = 128;
     _display->drawXbm((_display->width() - logoWidth) / 2, 3, meshcore_logo, logoWidth, 13);
 
+    // meshcore website
+    const char* website = "https://meshcore.io";
+    _display->setColor(DisplayDriver::LIGHT);
+    _display->setTextSize(1);
+    uint16_t websiteWidth = _display->getTextWidth(website);
+    _display->setCursor((_display->width() - websiteWidth) / 2, 22);
+    _display->print(website);
+
     // version info
     _display->setColor(DisplayDriver::LIGHT);
     _display->setTextSize(1);
     uint16_t versionWidth = _display->getTextWidth(_version_info);
-    _display->setCursor((_display->width() - versionWidth) / 2, 22);
+    _display->setCursor((_display->width() - versionWidth) / 2, 35);
     _display->print(_version_info);
 
     // node type
     const char* node_type = "< Repeater >";
     uint16_t typeWidth = _display->getTextWidth(node_type);
-    _display->setCursor((_display->width() - typeWidth) / 2, 35);
+    _display->setCursor((_display->width() - typeWidth) / 2, 48);
     _display->print(node_type);
   } else {  // home screen
     // node name
@@ -72,10 +84,15 @@ void UITask::renderCurrScreen() {
     _display->setColor(DisplayDriver::YELLOW);
     sprintf(tmp, "FREQ: %06.3f SF%d", _node_prefs->freq, _node_prefs->sf);
     _display->print(tmp);
-
+    
     // bw / cr
     _display->setCursor(0, 30);
     sprintf(tmp, "BW: %03.2f CR: %d", _node_prefs->bw, _node_prefs->cr);
+    _display->print(tmp);
+	
+	// tx power
+	_display->setCursor(0, 42);
+	sprintf(tmp, "TX: %ddBm", _node_prefs->tx_power_dbm);
     _display->print(tmp);
   }
 }
@@ -85,7 +102,7 @@ void UITask::loop() {
   if (millis() >= _next_read) {
     int btnState = digitalRead(PIN_USER_BTN);
     if (btnState != _prevBtnState) {
-      if (btnState == LOW) {  // pressed?
+      if (btnState == USER_BTN_PRESSED) {  // pressed?
         if (_display->isOn()) {
           // TODO: any action ?
         } else {

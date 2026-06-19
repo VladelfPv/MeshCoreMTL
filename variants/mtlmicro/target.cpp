@@ -2,8 +2,13 @@
 #include "target.h"
 #include <helpers/ArduinoHelpers.h>
 
-#include "../examples/companion_radio/MyMesh.h"
-#include "../examples/companion_radio/ui-new/UITask.h"
+#ifdef WITH_RS232_BRIDGE
+    #include "../examples/simple_repeater/MyMesh.h"
+    #include "../examples/simple_repeater/UITask.h"
+#else
+    #include "../examples/companion_radio/MyMesh.h"
+    #include "../examples/companion_radio/ui-new/UITask.h"
+#endif
 
 template<typename Tag, typename Tag::type M>
 struct Rob {
@@ -52,12 +57,17 @@ void power_update() {
     auto* node_prefs = the_mesh.getNodePrefs();
     extern UITask ui_task;
     unsigned long UITask::*next_refresh_ptr = get(UITask_next_refresh());
+    
     uint8_t newPower = digitalRead(PIN_USER_POWER) == HIGH ? USER_POWER_MAX : USER_POWER_MIN;
     if (newPower != _lastSwitchPower && digitalRead(P_LORA_BUSY) == LOW) {
       _lastSwitchPower = newPower;
       radio_driver.setPower(newPower);
       node_prefs->tx_power_dbm = newPower;
-      ui_task.*next_refresh_ptr = 0;
+      
+      #ifndef WITH_RS232_BRIDGE
+        ui_task.*next_refresh_ptr = 0;
+      #endif
+    
       MESH_DEBUG_PRINTLN("INFO: %d dBm", newPower);
     }
     next_power_chck = millis() + 300;
