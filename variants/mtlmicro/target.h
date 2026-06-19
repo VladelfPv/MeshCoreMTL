@@ -11,7 +11,15 @@
 #include <RadioLib.h>
 #include <helpers/radiolib/RadioLibWrappers.h>
 #include <MTLmicroBoard.h>
-#include <helpers/radiolib/CustomSX1262Wrapper.h>
+
+#if defined(USE_SX1262) || defined(USE_SX1268)
+#ifdef USE_SX1262
+  #include <helpers/radiolib/CustomSX1262Wrapper.h>
+#else
+  #include <helpers/radiolib/CustomSX1268Wrapper.h>
+#endif
+#endif
+
 #include <helpers/AutoDiscoverRTCClock.h>
 
 #if CONCAT(DISPLAY_CLASS, SH1106Display)
